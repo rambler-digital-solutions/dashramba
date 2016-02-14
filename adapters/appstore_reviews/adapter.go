@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-type ITunesFeed struct {
+type RawITunesFeed struct {
 	Feed struct {
 		Entries []struct {
 			Author struct {
@@ -28,8 +28,16 @@ type ITunesFeed struct {
 	} `json:"feed"`
 }
 
-func Parse(id string) {
-	response, error := http.Get("https://itunes.apple.com/ru/rss/customerreviews/id=323214038/sortBy=mostRecent/json")
+type AppReview struct {
+	AuthorName string `json:"author_name"`
+	Title string `json:"title"`
+	Content string `json:"content"`
+	Rating string `json:"rating"`
+}
+
+func Parse(appId string) []byte {
+
+	response, error := http.Get("https://itunes.apple.com/ru/rss/customerreviews/id=" + appId + "/sortBy=mostRecent/json")
 	defer response.Body.Close()
 	if error != nil {
 		// handle error
@@ -39,9 +47,24 @@ func Parse(id string) {
 		// handle error
 	}
 
-	var feed ITunesFeed
+	var feed RawITunesFeed
 	json.Unmarshal(body, &feed)
 
-    var reviews = feed.Feed.Entries[1:]
-    fmt.Println(reviews[0])
+    var entries = feed.Feed.Entries[1:]
+    var reviews []AppReview
+    for _, entry := range entries {
+        review := new(AppReview)
+        review.AuthorName = entry.Author.Name.Label
+        review.Title = entry.Title.Label
+        review.Content = entry.Content.Label
+        review.Rating = entry.Rating.Label
+        reviews = append(reviews, *review)
+    }
+
+    marshalledReviews, error := json.Marshal(reviews)
+    if error != nil {
+        fmt.Println(error)
+        return nil
+    }
+    return marshalledReviews
 }

@@ -1,10 +1,11 @@
 package main
 
 import (
-
+	"fmt"
 	
 )
 
 func main() {
-	Parse("123")
+	result := Parse("323214038")
+	fmt.Println(string(result))
 }
