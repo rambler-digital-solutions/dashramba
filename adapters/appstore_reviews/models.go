@@ -1,4 +1,4 @@
-package main
+package appstore_reviews
 
 type RawITunesFeed struct {
 	Feed struct {
