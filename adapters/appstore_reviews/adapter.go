@@ -11,11 +11,13 @@ func ObtainDataForApplicationId(appId string) []byte {
 	response, error := http.Get("https://itunes.apple.com/ru/rss/customerreviews/id=" + appId + "/sortBy=mostRecent/json")
 	defer response.Body.Close()
 	if error != nil {
-		// handle error
+		fmt.Println(error)
+        return nil
 	}
 	body, error := ioutil.ReadAll(response.Body)
 	if error != nil {
-		// handle error
+		fmt.Println(error)
+        return nil
 	}
 
 	var feed RawITunesFeed
