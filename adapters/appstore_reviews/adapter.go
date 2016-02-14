@@ -61,7 +61,7 @@ func Parse(appId string) []byte {
         reviews = append(reviews, *review)
     }
 
-    marshalledReviews, error := json.Marshal(reviews)
+    marshalledReviews, error := json.MarshalIndent(reviews, "", " ")
     if error != nil {
         fmt.Println(error)
         return nil
