@@ -1,11 +1,13 @@
 package main
 
-import "fmt"
-import "encoding/json"
-import "net/http"
-import "io/ioutil"
+import (
+	"fmt"
+	"encoding/json"
+	"net/http"
+	"io/ioutil"
+)
 
-type ItunesFeed struct {
+type ITunesFeed struct {
 	Feed struct {
 		Entries []struct {
 			Author struct {
@@ -26,7 +28,7 @@ type ItunesFeed struct {
 	} `json:"feed"`
 }
 
-func main() {
+func Parse(id string) {
 	response, error := http.Get("https://itunes.apple.com/ru/rss/customerreviews/id=323214038/sortBy=mostRecent/json")
 	defer response.Body.Close()
 	if error != nil {
@@ -37,7 +39,7 @@ func main() {
 		// handle error
 	}
 
-	var feed ItunesFeed
+	var feed ITunesFeed
 	json.Unmarshal(body, &feed)
 
     var reviews = feed.Feed.Entries[1:]
