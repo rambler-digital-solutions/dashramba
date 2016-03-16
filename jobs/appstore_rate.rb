@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 
 require_relative '../lib/appstore/review_model'
+require_relative '../lib/appstore/rate_calculator'
 
 SCHEDULER.every '1m', :first_in => 0 do |job|
 
@@ -20,12 +21,9 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
     models.push(model)
   end
 
-  medium_rate = 0.0
-  models.each do |review|
-    medium_rate = medium_rate + review.rating.to_i
-  end
+  rate_calculator = AppStore::RateCalculator.new
+  rating = rate_calculator.calculate_latest_version_average_rate(models)
 
-  average_rate = medium_rate / models.count
 
-  	send_event('welcome', { 'title' => average_rate.to_s } )
+	send_event('welcome', { 'title' => rating.round(2).to_s } )
 end
