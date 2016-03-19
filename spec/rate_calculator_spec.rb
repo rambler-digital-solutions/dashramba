@@ -1,10 +1,12 @@
 require 'rspec'
 require_relative '../lib/appstore/rate_calculator'
 require_relative '../lib/appstore/review_model'
+require_relative '../lib/appstore/review_mapper'
 
 describe 'RateCalculator' do
   before(:each) do
     @calculator = AppStore::RateCalculator.new
+    @mapper = AppStore::ReviewMapper.new
   end
 
   it 'should calculate average rate for multiple reviews' do
@@ -32,7 +34,7 @@ describe 'RateCalculator' do
               'label' => "Все супер"
           }
       }
-      review = AppStore::ReviewModel.new(review_hash)
+      review = @mapper.map_response(review_hash)
       reviews.push(review)
     end
 
@@ -67,7 +69,7 @@ describe 'RateCalculator' do
               'label' => "Все супер"
           }
       }
-      review = AppStore::ReviewModel.new(review_hash)
+      review = @mapper.map_response(review_hash)
       reviews.push(review)
     end
 

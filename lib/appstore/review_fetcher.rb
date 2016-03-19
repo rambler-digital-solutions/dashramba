@@ -1,5 +1,6 @@
 require_relative 'appstore_constants'
 require_relative 'review_model'
+require_relative 'review_mapper'
 
 module AppStore
   class ReviewFetcher
@@ -15,10 +16,12 @@ module AppStore
       hash = JSON.parse(response)
       entries = hash['feed']['entry']
 
+      mapper = AppStore::ReviewMapper.new
       entries = entries.drop(1)
       models = Array.new
       entries.each do |hash|
-        model = ReviewModel.new(hash)
+        model = mapper.map_response(hash)
+        model.save()
         models.push(model)
       end
       return models

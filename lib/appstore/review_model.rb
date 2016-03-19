@@ -1,18 +1,20 @@
+require 'data_mapper'
+
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/database.db")
+
 module AppStore
   class ReviewModel
-    attr_reader :author_name,
-                :rating,
-                :title,
-                :text,
-                :version
+    include DataMapper::Resource
 
-    def initialize(hash)
-      @author_name = hash['author']['name']['label']
-      @rating = hash['im:rating']['label']
-      @title = hash['title']['label']
-      @text = hash['content']['label']
-      @version = hash['im:version']['label']
-    end
+    property :id, Serial
+    property :author_name, String
+    property :rating, String
+    property :title, String
+    property :text, String
+    property :version, String
 
   end
+
+  DataMapper.finalize
+  ReviewModel.auto_upgrade!
 end
