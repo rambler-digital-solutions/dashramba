@@ -7,3 +7,4 @@ gem 'twitter', '>= 5.9.0'
 
 gem 'rspec'
 gem 'rspec-core'
+gem 'webmock'
