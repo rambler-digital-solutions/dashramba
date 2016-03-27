@@ -27,7 +27,7 @@ module AppStore
     end
 
     def obtain_reviews_for_app_id(app_id)
-      AppStore::ReviewModel.all()
+      AppStore::ReviewModel.all(:app_id => app_id)
     end
   end
 end
