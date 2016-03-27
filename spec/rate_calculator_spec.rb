@@ -1,42 +1,18 @@
 require 'rspec'
 require_relative '../lib/appstore/rate_calculator'
-require_relative '../lib/appstore/review_model'
-require_relative '../lib/appstore/review_mapper'
+require_relative 'stub_review_generator'
 
 describe 'RateCalculator' do
   before(:each) do
     @calculator = AppStore::RateCalculator.new
-    @mapper = AppStore::ReviewMapper.new
+    @review_generator = AppStoreSpec::StubReviewGenerator.new
   end
 
   it 'should calculate average rate for multiple reviews' do
     ratings = [3, 4, 4, 4, 5]
     expected_average_rate = (ratings.inject(0) { |sum, x| sum+x } / ratings.count).to_f
 
-    reviews = Array.new
-    ratings.each do |rating|
-      review_hash = {
-          'author'=> {
-              'name'=> {
-                  'label' => 'Roarklina'
-              }
-          },
-          'im:version' => {
-            'label' => "3.2.0"
-          },
-          'im:rating' => {
-            'label' => rating.to_s
-          },
-          'content' => {
-            'label' => "Приложение удобное, но с одним минусом. Добавьте, пожалуйста, чтобы на страницах выставок тоже были карты с отметкой где находится место проведения как на страницах других мероприятий."
-          },
-          'title' => {
-              'label' => "Все супер"
-          }
-      }
-      review = @mapper.map_response(review_hash, nil)
-      reviews.push(review)
-    end
+    reviews = @review_generator.generate_reviews_with_ratings(ratings)
 
     average_rate = @calculator.calculate_average_rate(reviews)
     expect(average_rate).to equal(expected_average_rate)
@@ -48,30 +24,7 @@ describe 'RateCalculator' do
 
     expected_average_rate = (ratings[2..4].inject(0) { |sum, x| sum+x }.to_f / ratings[2..4].count).to_f
 
-    reviews = Array.new
-    ratings.zip(versions).each do |rating, version|
-      review_hash = {
-          'author'=> {
-              'name'=> {
-                  'label' => 'Roarklina'
-              }
-          },
-          'im:version' => {
-              'label' => version
-          },
-          'im:rating' => {
-              'label' => rating.to_s
-          },
-          'content' => {
-              'label' => "Приложение удобное, но с одним минусом. Добавьте, пожалуйста, чтобы на страницах выставок тоже были карты с отметкой где находится место проведения как на страницах других мероприятий."
-          },
-          'title' => {
-              'label' => "Все супер"
-          }
-      }
-      review = @mapper.map_response(review_hash, nil)
-      reviews.push(review)
-    end
+    reviews = @review_generator.generate_reviews_with_ratings_and_versions(ratings, versions)
 
     average_rate = @calculator.calculate_latest_version_average_rate(reviews)
     expect(average_rate).to equal(expected_average_rate)
