@@ -11,5 +11,9 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
   rate_calculator = AppStore::RateCalculator.new
   reviews = service.obtain_reviews_for_app_id('323214038')
   rating = rate_calculator.calculate_latest_version_average_rate(reviews)
-	send_event('welcome', { 'title' => rating.round(2).to_s } )
+	send_event('appstore_rate', {
+                          'title' => rating.round(2).to_s,
+                          'text' => 'Афиша, v.3.2.0'
+                      }
+  )
 end
