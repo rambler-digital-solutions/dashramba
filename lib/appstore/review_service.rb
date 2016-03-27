@@ -3,7 +3,7 @@ require_relative 'review_model'
 require_relative 'review_mapper'
 
 module AppStore
-  class ReviewFetcher
+  class ReviewService
 
     def fetch_reviews_for_app_id(app_id)
       url = Pathname.new(CUSTOMER_REVIEWS_LINK)
@@ -18,13 +18,16 @@ module AppStore
 
       mapper = AppStore::ReviewMapper.new
       entries = entries.drop(1)
-      models = Array.new
       entries.each do |hash|
-        model = mapper.map_response(hash)
-        model.save()
-        models.push(model)
+        model = mapper.map_response(hash, app_id)
+        if model != nil
+          model.save()
+        end
       end
-      return models
+    end
+
+    def obtain_reviews_for_app_id(app_id)
+      AppStore::ReviewModel.all()
     end
   end
 end

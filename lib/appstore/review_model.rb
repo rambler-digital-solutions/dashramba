@@ -7,10 +7,11 @@ module AppStore
     include DataMapper::Resource
 
     property :id, Serial
+    property :app_id, String
     property :author_name, String
     property :rating, String
     property :title, String
-    property :text, String
+    property :text, Text
     property :version, String
 
   end

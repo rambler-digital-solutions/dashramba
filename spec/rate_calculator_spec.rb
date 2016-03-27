@@ -34,7 +34,7 @@ describe 'RateCalculator' do
               'label' => "Все супер"
           }
       }
-      review = @mapper.map_response(review_hash)
+      review = @mapper.map_response(review_hash, nil)
       reviews.push(review)
     end
 
@@ -69,11 +69,12 @@ describe 'RateCalculator' do
               'label' => "Все супер"
           }
       }
-      review = @mapper.map_response(review_hash)
+      review = @mapper.map_response(review_hash, nil)
       reviews.push(review)
     end
 
     average_rate = @calculator.calculate_latest_version_average_rate(reviews)
     expect(average_rate).to equal(expected_average_rate)
   end
+
 end

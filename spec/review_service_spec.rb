@@ -2,17 +2,23 @@ require 'rspec'
 require 'webmock/rspec'
 
 require_relative '../lib/appstore/appstore_constants'
-require_relative '../lib/appstore/review_fetcher'
+require_relative '../lib/appstore/review_service'
 
 describe 'ReviewFetcher' do
+  before(:each) do
+    @service = AppStore::ReviewService.new
+  end
 
   it 'should fetch reviews' do
     response_file = File.new(Dir.getwd + '/spec/review_fetcher_stub_response.txt')
     stub_request(:any, /.*#{AppStore::CUSTOMER_REVIEWS_LINK}*/).to_return(:body => response_file, :status => 200)
+    reviews = @service.fetch_reviews_for_app_id('123')
 
-    fetcher = AppStore::ReviewFetcher.new
-    reviews = fetcher.fetch_reviews_for_app_id('123')
+    result_count = AppStore::ReviewModel.all().count
+    expect(result_count).to equal(50)
+  end
 
-    expect(reviews.count).to equal(50)
+  after(:each) do
+    AppStore::ReviewModel.all.destroy
   end
 end
