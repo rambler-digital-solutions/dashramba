@@ -1,19 +1,22 @@
 ---
 valuation: |+
-  data: {"current":70,"last":15,"id":"valuation","updatedAt":1459098283}
+  data: {"current":71,"last":84,"id":"valuation","updatedAt":1459099787}
 
 karma: |+
-  data: {"current":179587,"last":115468,"id":"karma","updatedAt":1459098283}
+  data: {"current":10886,"last":73202,"id":"karma","updatedAt":1459099787}
 
 synergy: |+
-  data: {"value":42,"id":"synergy","updatedAt":1459098283}
+  data: {"value":90,"id":"synergy","updatedAt":1459099787}
 
 convergence: |+
-  data: {"points":[{"x":27,"y":29},{"x":28,"y":49},{"x":29,"y":33},{"x":30,"y":15},{"x":31,"y":42},{"x":32,"y":5},{"x":33,"y":45},{"x":34,"y":42},{"x":35,"y":45},{"x":36,"y":40}],"id":"convergence","updatedAt":1459098283}
+  data: {"points":[{"x":752,"y":45},{"x":753,"y":4},{"x":754,"y":48},{"x":755,"y":46},{"x":756,"y":16},{"x":757,"y":42},{"x":758,"y":22},{"x":759,"y":10},{"x":760,"y":44},{"x":761,"y":8}],"id":"convergence","updatedAt":1459099787}
 
 buzzwords: |+
-  data: {"items":[{"label":"Paradigm shift","value":2},{"label":"Turn-key","value":5},{"label":"Pivoting","value":3},{"label":"Streamlininess","value":2},{"label":"Web 2.0","value":5},{"label":"Leverage","value":4},{"label":"Enterprise","value":2},{"label":"Synergy","value":2},{"label":"Exit strategy","value":1}],"id":"buzzwords","updatedAt":1459098283}
+  data: {"items":[{"label":"Web 2.0","value":24},{"label":"Synergy","value":2},{"label":"Paradigm shift","value":19},{"label":"Enterprise","value":15},{"label":"Streamlininess","value":2},{"label":"Exit strategy","value":21},{"label":"Pivoting","value":0},{"label":"Turn-key","value":15},{"label":"Leverage","value":23}],"id":"buzzwords","updatedAt":1459099787}
 
 welcome: |+
   data: {"title":"3.8","text":"Афиша, v.3.2.0","id":"welcome","updatedAt":1459098231}
+
+appstore_rate: |+
+  data: {"title":"3.8","text":"Афиша, v.3.2.0","id":"appstore_rate","updatedAt":1459099785}
 
