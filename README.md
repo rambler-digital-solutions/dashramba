@@ -1,15 +1,12 @@
 # dashramba
 [![Build Status](https://travis-ci.org/rambler-ios/dashramba.svg?branch=develop)](https://travis-ci.org/rambler-ios/dashramba)
 
-### Build&Run
-```
-go build
-./dashramba
-```
+### Overview
+Rambler&Co iOS Team dashboard, built using [Dashing](http://dashing.io).
 
-### Docs
-
-Adapter is everything under folder `adapters` with name suffix `_adapter`
+## Integrations
+- AppStore
+  - Average rating
 
 
 
