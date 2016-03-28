@@ -1,0 +1,8 @@
+projects:
+  afisha_restaurants:
+    display_name: Афиша.Рестораны
+    appstore_id: '916815434'
+
+  afisha:
+    display_name: Афиша
+    appstore_id: '323214038'

@@ -1,0 +1,28 @@
+---
+valuation: |+
+  data: {"current":89,"last":97,"id":"valuation","updatedAt":1459167215}
+
+karma: |+
+  data: {"current":74699,"last":4873,"id":"karma","updatedAt":1459167215}
+
+synergy: |+
+  data: {"value":82,"id":"synergy","updatedAt":1459167215}
+
+convergence: |+
+  data: {"points":[{"x":7376,"y":15},{"x":7377,"y":44},{"x":7378,"y":20},{"x":7379,"y":23},{"x":7380,"y":19},{"x":7381,"y":27},{"x":7382,"y":3},{"x":7383,"y":43},{"x":7384,"y":31},{"x":7385,"y":46}],"id":"convergence","updatedAt":1459167215}
+
+buzzwords: |+
+  data: {"items":[{"label":"Exit strategy","value":20},{"label":"Web 2.0","value":3},{"label":"Paradigm shift","value":28},{"label":"Turn-key","value":12},{"label":"Streamlininess","value":18},{"label":"Leverage","value":8},{"label":"Synergy","value":17},{"label":"Enterprise","value":21},{"label":"Pivoting","value":18}],"id":"buzzwords","updatedAt":1459167215}
+
+welcome: |+
+  data: {"text":"Hey, Look what I can do!","id":"welcome","updatedAt":1459106064}
+
+appstore_rate: |+
+  data: {"title":"5.0","text":"Афиша.Рестораны, v.1.2.2","id":"appstore_rate","updatedAt":1459102147}
+
+appstore_rate_916815434: |+
+  data: {"title":"5.0","text":"Афиша.Рестораны, v.1.2.2","id":"appstore_rate_916815434","updatedAt":1459167165}
+
+appstore_rate_323214038: |+
+  data: {"title":"3.81","text":"Афиша, v.3.2.0","id":"appstore_rate_323214038","updatedAt":1459167165}
+
