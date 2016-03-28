@@ -9,7 +9,7 @@ module AppStore
     property :id, Serial
     property :app_id, String
     property :author_name, String
-    property :rating, String
+    property :rating, Float
     property :title, String
     property :text, Text
     property :version, String
