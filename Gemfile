@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'rake'
 gem 'dashing'
 gem 'dm-sqlite-adapter'
 gem 'data_mapper'
