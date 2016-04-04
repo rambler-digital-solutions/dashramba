@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$background-color:  #ec663c;
+$background-color:  #ffffff;
 
 $review-title-color:       rgba(0, 0, 0, 1);
 $review-text-color:        rgba(0, 0, 0, 1);
@@ -15,31 +15,33 @@ $review-text-color:        rgba(0, 0, 0, 1);
 
   .review-title {
     color: $review-title-color;
+    font-weight: bold;
+    padding-bottom: 20px;
   }
 
   .review-text {
+    text-align: center;
+    padding-top: 20px;
     color: $review-text-color;
+    line-height: 35px;
   }
 
-  .author-name {
-    color: $review-text-color;
-  }
-
-  .date {
-    color: rgba(255, 255, 255, 0.7);
+  .more-info {
+    color: #000000;
   }
 
   .review-rating {
     color: $review-text-color;
-    width: 60%;
-    display: block;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    height: 30px;
   }
 
   .star {
     width: 20%;
     float: left;
+    font-size: 30px;
   }
 
   .yellow {
@@ -49,9 +51,5 @@ $review-text-color:        rgba(0, 0, 0, 1);
 
   .gray {
     color :rgba(163, 163, 163, 1);
-  }
-
-  &.large h3 {
-    font-size: 65px;
   }
 }

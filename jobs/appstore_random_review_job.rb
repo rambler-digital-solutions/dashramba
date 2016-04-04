@@ -16,8 +16,10 @@ SCHEDULER.every '5s', :first_in => 0 do |job|
     random_review = reviews.sample
     widget_name = "appstore_review_#{project.appstore_id}"
     send_event(widget_name, {
-                              'author-name' => random_review.author_name,
-                              'review-text' => random_review.text,
+                              'author_name' => random_review.author_name,
+                              'version' => random_review.version,
+                              'text' => random_review.text,
+                              'title' => random_review.title,
                               'rating' => random_review.rating
                           })
   end

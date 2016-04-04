@@ -11,3 +11,6 @@ class Dashing.Review extends Dashing.Widget
         html = html + "<div class=\"star gray\">★</div>"
 
     widget.find('.review-rating').html(html)
+
+    more_info = "by #{data.author_name} for #{data.version}"
+    widget.find('.more-info').html(more_info)
