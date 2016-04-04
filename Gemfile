@@ -5,6 +5,8 @@ gem 'dashing'
 gem 'dm-sqlite-adapter'
 gem 'data_mapper'
 gem 'sinatra_cyclist'
+gem 'google-api-client'
+gem 'google_drive'
 
 
 ## Remove this if you don't need a twitter widget.
