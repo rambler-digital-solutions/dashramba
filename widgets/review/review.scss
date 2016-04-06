@@ -1,0 +1,55 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #ffffff;
+
+$review-title-color:       rgba(0, 0, 0, 1);
+$review-text-color:        rgba(0, 0, 0, 1);
+
+// ----------------------------------------------------------------------------
+// Widget-text styles
+// ----------------------------------------------------------------------------
+.widget-review {
+
+  background-color: $background-color;
+
+  .review-title {
+    color: $review-title-color;
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
+
+  .review-text {
+    text-align: center;
+    padding-top: 20px;
+    color: $review-text-color;
+    line-height: 35px;
+  }
+
+  .more-info {
+    color: #000000;
+  }
+
+  .review-rating {
+    color: $review-text-color;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+  }
+
+  .star {
+    width: 20%;
+    float: left;
+    font-size: 30px;
+  }
+
+  .yellow {
+    color :rgba(255, 210, 0, 1);
+
+  }
+
+  .gray {
+    color :rgba(163, 163, 163, 1);
+  }
+}
