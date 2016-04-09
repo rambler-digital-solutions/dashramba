@@ -1,18 +1,18 @@
 ---
 valuation: |+
-  data: {"current":89,"last":97,"id":"valuation","updatedAt":1459167215}
+  data: {"current":19,"last":1,"id":"valuation","updatedAt":1460218125}
 
 karma: |+
-  data: {"current":74699,"last":4873,"id":"karma","updatedAt":1459167215}
+  data: {"current":176302,"last":36141,"id":"karma","updatedAt":1460218125}
 
 synergy: |+
-  data: {"value":82,"id":"synergy","updatedAt":1459167215}
+  data: {"value":10,"id":"synergy","updatedAt":1460218125}
 
 convergence: |+
-  data: {"points":[{"x":7376,"y":15},{"x":7377,"y":44},{"x":7378,"y":20},{"x":7379,"y":23},{"x":7380,"y":19},{"x":7381,"y":27},{"x":7382,"y":3},{"x":7383,"y":43},{"x":7384,"y":31},{"x":7385,"y":46}],"id":"convergence","updatedAt":1459167215}
+  data: {"points":[{"x":34,"y":1},{"x":35,"y":39},{"x":36,"y":39},{"x":37,"y":11},{"x":38,"y":19},{"x":39,"y":44},{"x":40,"y":9},{"x":41,"y":40},{"x":42,"y":19},{"x":43,"y":29}],"id":"convergence","updatedAt":1460218125}
 
 buzzwords: |+
-  data: {"items":[{"label":"Exit strategy","value":20},{"label":"Web 2.0","value":3},{"label":"Paradigm shift","value":28},{"label":"Turn-key","value":12},{"label":"Streamlininess","value":18},{"label":"Leverage","value":8},{"label":"Synergy","value":17},{"label":"Enterprise","value":21},{"label":"Pivoting","value":18}],"id":"buzzwords","updatedAt":1459167215}
+  data: {"items":[{"label":"Web 2.0","value":5},{"label":"Paradigm shift","value":5},{"label":"Turn-key","value":3},{"label":"Exit strategy","value":2},{"label":"Synergy","value":4},{"label":"Enterprise","value":4},{"label":"Pivoting","value":5},{"label":"Streamlininess","value":4},{"label":"Leverage","value":1}],"id":"buzzwords","updatedAt":1460218125}
 
 welcome: |+
   data: {"text":"Hey, Look what I can do!","id":"welcome","updatedAt":1459106064}
@@ -21,8 +21,20 @@ appstore_rate: |+
   data: {"title":"5.0","text":"Афиша.Рестораны, v.1.2.2","id":"appstore_rate","updatedAt":1459102147}
 
 appstore_rate_916815434: |+
-  data: {"title":"5.0","text":"Афиша.Рестораны, v.1.2.2","id":"appstore_rate_916815434","updatedAt":1459167165}
+  data: {"title":"3.63","text":"Афиша.Рестораны, v.1.2.2","id":"appstore_rate_916815434","updatedAt":1460218059}
 
 appstore_rate_323214038: |+
-  data: {"title":"3.81","text":"Афиша, v.3.2.0","id":"appstore_rate_323214038","updatedAt":1459167165}
+  data: {"title":"4.3","text":"Афиша, v.3.3.0","id":"appstore_rate_323214038","updatedAt":1460218059}
+
+appstore_review_916815434: |+
+  data: {"author_name":"artur_774","version":"1.1.1","text":"Много хороших мест","title":"Круто","rating":5.0,"id":"appstore_review_916815434","updatedAt":1460218119}
+
+appstore_review_323214038: |+
+  data: {"author_name":"Эржик","version":"3.2.0","text":"Замечательное приложение! Пользуюсь уже не первый год! Ооочень нравится! Спасибо разработчикам!","title":"Приложение супер!","rating":5.0,"id":"appstore_review_323214038","updatedAt":1460218119}
+
+fabric_916815434: |+
+  data: {"current":99.8,"id":"fabric_916815434","updatedAt":1460218067}
+
+fabric_323214038: |+
+  data: {"current":99.8,"id":"fabric_323214038","updatedAt":1460218075}
 

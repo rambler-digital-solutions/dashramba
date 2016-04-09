@@ -2,7 +2,9 @@ projects:
   afisha_restaurants:
     display_name: Афиша.Рестораны
     appstore_id: '916815434'
+    bundle_id: com.afisha.restaurants
 
   afisha:
     display_name: Афиша
     appstore_id: '323214038'
+    bundle_id: ru.afisha.iphone
