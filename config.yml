@@ -2,7 +2,14 @@ projects:
   afisha_restaurants:
     display_name: Афиша.Рестораны
     appstore_id: '916815434'
+    jenkins_name: Afisha.Restaurants.iOS
 
   afisha:
     display_name: Афиша
     appstore_id: '323214038'
+    jenkins_name: Rambler.Afisha.iOS
+
+  realty:
+    display_name: Недвижимость
+    jenkins_name: Rambler.Realty.Search.iOS
+
