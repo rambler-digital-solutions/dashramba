@@ -8,7 +8,6 @@ SCHEDULER.every '1m', :first_in => 0 do
         output = `python #{tmp_dir}/jenkins_job.py #{name}`.gsub('\'', '"').gsub('u"', '"')
         result = JSON.parse(output)
         new_hash = result['items'].map { |item| { label: item["label"], value: item["value"] } }
-        puts new_hash
         correct_array = correct_array.concat(new_hash)
         
     end

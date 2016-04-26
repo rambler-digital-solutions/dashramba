@@ -3,10 +3,16 @@ import json
 import coberturahandler
 import sqlite3
 import sys
+import ConfigParser
 
-def  connect_to_server():
-	server = Jenkins('http://ci.dev.rambler.ru/jenkins', username='dashramba', password='mPfmzzP')
-	return server
+def connect_to_server():
+    config = ConfigParser.ConfigParser()
+    config.read("credentials.ini")
+    login = config.get('JenkinsCredentials', 'Login')
+    password = config.get('JenkinsCredentials', 'Password')
+    serverUrl = config.get('JenkinsCredentials', 'JenkinsServer')
+    server = Jenkins(serverUrl, username=login, password=password)
+    return server
 
 def connect_to_db():
 	con = sqlite3.connect('../../database.db')
@@ -39,9 +45,7 @@ def fetch_properties_for_build(job_name, build_number, build):
 				'VALUES(NULL, ?, ?, ?, ?, ?, ?)', (job_name, build_number, dict['testsNumber'] if 'testsNumber' in dict else 0, dict['failCount'] if 'failCount' in dict else 0, str(dict['time']), dict['isGood']))
 	except:
 		pass
-		# sys.stderr.write('Didn\'t add anything to Table for project %s' % job_name)
 	con.commit()
-		# sys.stderr.write('Didn\'t add anything to Table for project %s' % job_name)
 	return dict
 
 
@@ -75,7 +79,7 @@ def fetch_some_last_builds_stat_for_job(server, job_name):
 	job = server[job_name]
 	last_build_number = job.get_last_buildnumber()
 	max_build = last_build_number+1
-	for i in range(max_build-5, max_build, 1):
+	for i in range(max_build-25, max_build, 1):
 		try:
 			build = job.get_build(i)
 			fetch_properties_for_build(job_name, i, build)
@@ -83,6 +87,7 @@ def fetch_some_last_builds_stat_for_job(server, job_name):
 			continue
 
 
+# Obtain builds with Biggest Build number for each project in database
 def obtain_last_builds_stat(cur):
 	items = []
 	for row in cur.execute('select * '
