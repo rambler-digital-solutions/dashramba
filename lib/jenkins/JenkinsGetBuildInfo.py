@@ -7,7 +7,7 @@ import ConfigParser
 
 def connect_to_server():
     config = ConfigParser.ConfigParser()
-    config.read("credentials.ini")
+    config.read('lib/jenkins/credentials.ini')
     login = config.get('JenkinsCredentials', 'Login')
     password = config.get('JenkinsCredentials', 'Password')
     serverUrl = config.get('JenkinsCredentials', 'JenkinsServer')
@@ -15,7 +15,7 @@ def connect_to_server():
     return server
 
 def connect_to_db():
-	con = sqlite3.connect('../../database.db')
+	con = sqlite3.connect('database.db')
 	cur = con.cursor()
 	cur.execute('CREATE TABLE IF NOT EXISTS jenkins_projects (id INTEGER PRIMARY KEY, '
 	            'projectName TEXT, '
