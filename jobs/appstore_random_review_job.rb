@@ -5,6 +5,7 @@ require_relative '../lib/appstore/review_service'
 SCHEDULER.every '30s', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
   project_manager.obtain_all_projects.each do |project|
+    next unless project.appstore_id != nil
     service = AppStore::ReviewService.new
     reviews = service.obtain_reviews_for_app_id(project.appstore_id)
 
