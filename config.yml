@@ -13,3 +13,17 @@ projects:
     display_name: Недвижимость
     jenkins_name: Rambler.Realty.Search.iOS
 
+  championat:
+    display_name: Чемпионат
+    appstore_id: '383955468'
+    jenkins_name: Rambler.Championat.iOS
+
+  kassa:
+    display_name: Рамблер.Касса
+    appstore_id: '905950888'
+    jenkins_name: Rambler.Kassa.iOS
+
+  lenta:
+    display_name: Лента
+    appstore_id: '975805914'
+    jenkins_name: Rambler.Lenta.iOS
