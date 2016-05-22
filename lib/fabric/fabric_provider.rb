@@ -47,9 +47,9 @@ module Fabric
       organization = 'organizations/' + organization_id
       project = '/apps/' + project_id
       endpoint = '/growth_analytics/crash_free_users_for_top_builds.json'
-      start_filte = '?start=' + start_timestamp.to_s
+      start_filter = '?start=' + start_timestamp.to_s
       end_filter = '&end=' + end_timestamp.to_s
-      request_uri = API_VERSION_2 + organization + project + endpoint + start_filte + end_filter
+      request_uri = API_VERSION_2 + organization + project + endpoint + start_filter + end_filter
       puts request_uri
       request = Net::HTTP::Get.new(request_uri)
       request['Authorization'] = 'Bearer ' + token

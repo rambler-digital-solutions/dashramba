@@ -17,3 +17,6 @@
 .idea/testapp.iml
 .idea/workspace.xml
 .idea
+history.yml
+Gemfile.lock
+fabric.yml
