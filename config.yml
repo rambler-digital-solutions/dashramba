@@ -2,28 +2,13 @@ projects:
   afisha_restaurants:
     display_name: Афиша.Рестораны
     appstore_id: '916815434'
-    jenkins_name: Afisha.Restaurants.iOS
+	jenkins_name: Afisha.Restaurants.iOS
+    bundle_id: com.afisha.restaurants
+    fabric_project_id: '559fcdc393fece3d9400001a'
 
   afisha:
     display_name: Афиша
     appstore_id: '323214038'
-    jenkins_name: Rambler.Afisha.iOS
-
-  realty:
-    display_name: Недвижимость
-    jenkins_name: Rambler.Realty.Search.iOS
-
-  championat:
-    display_name: Чемпионат
-    appstore_id: '383955468'
-    jenkins_name: Rambler.Championat.iOS
-
-  kassa:
-    display_name: Рамблер.Касса
-    appstore_id: '905950888'
-    jenkins_name: Rambler.Kassa.iOS
-
-  lenta:
-    display_name: Лента
-    appstore_id: '975805914'
-    jenkins_name: Rambler.Lenta.iOS
+	jenkins_name: Rambler.Afisha.iOS
+    bundle_id: ru.afisha.iphone
+    fabric_project_id: '551d4e9e893cfa3fe800004a'
