@@ -7,7 +7,7 @@ module Fabric
     include DataMapper::Resource
 
     property :id, Serial
-    property :bundle_id, String
+    property :fabric_project_id, String
     property :crashfree, Float
 
   end
