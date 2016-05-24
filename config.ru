@@ -16,6 +16,6 @@ map Sinatra::Application.assets_prefix do
   run Sinatra::Application.sprockets
 end
 
-set :routes_to_cycle_through, [:afisha, :afisha_restaurants, :tests_leaderboard]
+set :routes_to_cycle_through, [:afisha, :afisha_restaurants, :championat, :kassa, :lenta, :mail, :news, :tests_leaderboard]
 
 run Sinatra::Application

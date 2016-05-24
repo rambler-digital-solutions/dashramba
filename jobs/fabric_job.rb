@@ -14,7 +14,7 @@ SCHEDULER.every '2m', :first_in => 0 do |job|
     service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
     model = service.obtain_crashfree_for_bundle_id(project.fabric_project_id)
     crashfree = model.crashfree if model != nil
-    crashfree_percentage = "#{(crashfree * 100).to_s}%"
+    crashfree_percentage = "#{(crashfree * 100).round(1).to_s}%"
     widget_name = "fabric_#{project.appstore_id}"
     send_event(widget_name, { current: crashfree_percentage })
   end
