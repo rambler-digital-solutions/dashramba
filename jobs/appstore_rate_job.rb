@@ -23,8 +23,8 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
 
     widget_name = "appstore_rate_#{project.appstore_id}"
     send_event(widget_name, {
-                                  'title' => rating.round(2).to_s,
-                                  'text' => "#{project.display_name}, v.#{latest_version}"
+                                  'title' => "#{project.display_name}, v.#{latest_version}",
+                                  'current' => "#{rating.round(2).to_s}\u{1F31F}"
                               }
     )
   end
