@@ -2,13 +2,53 @@ projects:
   afisha_restaurants:
     display_name: Афиша.Рестораны
     appstore_id: '916815434'
-	jenkins_name: Afisha.Restaurants.iOS
-    bundle_id: com.afisha.restaurants
+    jenkins_name: 'Afisha.Restaurants.iOS'
     fabric_project_id: '559fcdc393fece3d9400001a'
 
   afisha:
     display_name: Афиша
     appstore_id: '323214038'
-	jenkins_name: Rambler.Afisha.iOS
-    bundle_id: ru.afisha.iphone
+    jenkins_name: 'Rambler.Afisha.iOS'
     fabric_project_id: '551d4e9e893cfa3fe800004a'
+
+  realty:
+    display_name: Недвижимость
+    jenkins_name: 'Rambler.Realty.Search.iOS'
+
+  championat:
+    display_name: Чемпионат
+    appstore_id: '383955468'
+    jenkins_name: 'Rambler.Championat.iOS'
+    fabric_project_id: '55b897f98bfc554b17000070'
+
+  kassa:
+    display_name: Рамблер.Касса
+    appstore_id: '905950888'
+    jenkins_name: 'Rambler.Kassa.iOS'
+    fabric_project_id: '553112637028b573240000b2'
+
+  lenta:
+    display_name: Лента
+    appstore_id: '975805914'
+    jenkins_name: 'Rambler.Lenta.iOS'
+    fabric_project_id: '56c5b9bc65d3804ff2000012'
+
+  mail:
+    display_name: Рамблер.Почта
+    appstore_id: '981598964'
+    jenkins_name: 'Rambler.Mail.iOS'
+    fabric_project_id: '54eda9617028b56e41000122'
+
+  news:
+    display_name: Рамблер.Новости
+    appstore_id: '395455931'
+    jenkins_name: 'Rambler.News.iOS'
+    fabric_project_id: '55366dcf9f2429062a0000ec'
+
+  instamedia:
+    display_name: Instamedia
+    jenkins_name: 'Rambler.Instamedia.iOS'
+
+  livejournal:
+    display_name: LiveJournal
+    jenkins_name: 'Sup.LiveJournal.iOS'
