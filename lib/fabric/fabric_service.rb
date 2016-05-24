@@ -17,8 +17,6 @@ module Fabric
        end_time = time.to_i
        json = @provider.crash_free_users(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
 
-       puts json
-
        crashfree = 0
        builds = json['builds']
        if builds

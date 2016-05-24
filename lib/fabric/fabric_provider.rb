@@ -50,7 +50,6 @@ module Fabric
       start_filter = '?start=' + start_timestamp.to_s
       end_filter = '&end=' + end_timestamp.to_s
       request_uri = API_VERSION_2 + organization + project + endpoint + start_filter + end_filter
-      puts request_uri
       request = Net::HTTP::Get.new(request_uri)
       request['Authorization'] = 'Bearer ' + token
       response = @http.request(request)
