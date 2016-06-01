@@ -8,7 +8,7 @@ require_relative 'google_drive_constants'
 module GoogleDrive
   class GoogleDriveService
 
-    def obtain_access_token
+    def obtain_session
       client = Google::APIClient.new(
           :application_name => GOOGLE_DRIVE_APPLICATION_NAME,
           :application_version => GOOGLE_DRIVE_APPLICATION_VERSION)
@@ -30,14 +30,13 @@ module GoogleDrive
         client.authorization = file_storage.authorization
       end
 
-      client.authorization.access_token
+      access_token = client.authorization.access_token
+      GoogleDrive.login_with_oauth(access_token)
     end
 
-    def obtain_spreadsheet_value(access_token, spreadsheet_id, worksheet_number, row_number, column_number)
-      session = GoogleDrive.login_with_oauth(access_token)
+    def obtain_spreadsheet_value(session, spreadsheet_id, worksheet_number, cell_id)
       worksheet = session.spreadsheet_by_key(spreadsheet_id).worksheets[worksheet_number]
-
-      worksheet[row_number, column_number]
+      worksheet[cell_id]
     end
   end
 end

@@ -4,4 +4,5 @@ module Infrastructure
   APPSTORE_ID_KEY = 'appstore_id'
   JENKINS_NAME_KEY = 'jenkins_name'
   FABRIC_PROJECT_ID_KEY = 'fabric_project_id'
+  GOOGLE_CODE_REVIEW_CELL_ID = 'google_code_review_cell_id'
 end
