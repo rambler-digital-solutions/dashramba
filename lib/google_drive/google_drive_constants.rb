@@ -1,0 +1,5 @@
+module GoogleDrive
+  GOOGLE_DRIVE_APPLICATION_NAME = 'Dashramba'
+  GOOGLE_DRIVE_APPLICATION_VERSION = '1.0.0'
+  GOOGLE_DRIVE_CREDENTIALS_FILENAME = 'credential-oauth2.json'
+end

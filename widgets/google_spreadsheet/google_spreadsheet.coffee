@@ -1,0 +1,1 @@
+class Dashing.GoogleSpreadsheet extends Dashing.Widget
