@@ -6,7 +6,7 @@ require 'google_drive'
 require_relative 'google_drive_constants'
 
 module GoogleDrive
-  class GoogleDriveService
+  class GoogleDriveClient
 
     def obtain_session
       client = Google::APIClient.new(

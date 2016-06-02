@@ -1,7 +1,5 @@
 class Dashing.CodeReviewStatus extends Dashing.Widget
-  ready: ->
-    widget = $(@node)
-    widget.css("background-color", "#29a334")
+
   onData: (data) ->
     widget = $(@node)
 
