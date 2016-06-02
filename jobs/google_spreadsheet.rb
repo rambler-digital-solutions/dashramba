@@ -19,19 +19,12 @@ SCHEDULER.every '10m', :first_in => 0 do |job|
                                                    project.google_code_review_cell_id)
     review_date = Date.parse(review_date_string)
     number_of_days = Date.today.mjd - review_date.mjd
-    if number_of_days > 100
-      result_string = 'Слишком давно'
-    else
-      result_string = "#{number_of_days.to_s} дн. назад"
-    end
 
     widget_name = "google_spreadsheet_#{project.jenkins_name}"
     puts(widget_name)
     send_event(widget_name, {
-                              'current' => result_string
+                              'days' => number_of_days
                           })
-
-    puts(result_string)
   end
 
 
