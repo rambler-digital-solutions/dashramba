@@ -3,7 +3,7 @@ require_relative '../lib/infrastructure/project_model'
 require_relative '../lib/appstore/review_service'
 require_relative '../lib/appstore/review_model'
 
-SCHEDULER.every '30s', :first_in => 0 do |job|
+SCHEDULER.every '15s', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
   project_manager.obtain_all_projects.each do |project|
     next unless project.appstore_id != nil
