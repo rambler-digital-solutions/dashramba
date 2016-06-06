@@ -6,7 +6,7 @@ gem 'dashing'
 gem 'dm-sqlite-adapter'
 gem 'data_mapper'
 gem 'sinatra_cyclist'
-gem 'google-api-client'
+gem 'google-api-client', '<0.9'
 gem 'google_drive'
 
 
