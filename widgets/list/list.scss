@@ -4,8 +4,8 @@
 $background-color:  #12b0c5;
 $value-color:       #fff;
 
-$title-color:       rgba(255, 255, 255, 0.7);
-$label-color:       rgba(255, 255, 255, 0.7);
+$title-color:       rgba(255, 255, 255, 1);
+$label-color:       rgba(255, 255, 255, 1);
 $moreinfo-color:    rgba(255, 255, 255, 0.7);
 
 // ----------------------------------------------------------------------------
@@ -18,6 +18,8 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
 
   .title {
     color: $title-color;
+    font-size: 50px;
+    font-weight: bold;
   }
 
   ol, ul {
@@ -32,6 +34,7 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
 
   li {
     margin-bottom: 5px;
+
   }
 
   .list-nostyle {
@@ -40,12 +43,14 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
 
   .label {
     color: $label-color;
+    font-size: 30px;
   }
 
   .value {
     float: right;
     margin-left: 12px;
     font-weight: 600;
+    font-size: 30px;
     color: $value-color;
   }
 
