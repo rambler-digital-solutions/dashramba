@@ -1,3 +1,5 @@
+require 'dotenv'
+Dotenv.load
 require 'sinatra/cyclist'
 require 'dashing'
 
@@ -16,6 +18,6 @@ map Sinatra::Application.assets_prefix do
   run Sinatra::Application.sprockets
 end
 
-set :routes_to_cycle_through, [:afisha, :afisha_restaurants]
+set :routes_to_cycle_through, [:afisha, :afisha_restaurants, :championat, :kassa, :lenta, :mail, :news, :tests_leaderboard]
 
 run Sinatra::Application

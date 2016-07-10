@@ -1,1 +1,22 @@
-dashramba
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+.DS_Store
+/lib/generators
+/.idea
+.idea/*
+.idea/workspace.xml
+.idea/.rakeTasks
+.idea/.rakeTasks
+.idea/testapp.iml
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/.generators
+.idea/.rakeTasks
+.idea/dataSources.ids
+.idea/testapp.iml
+.idea/workspace.xml
+.idea
+history.yml
+Gemfile.lock
+fabric.yml

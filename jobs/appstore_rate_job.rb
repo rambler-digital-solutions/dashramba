@@ -10,6 +10,7 @@ require_relative '../lib/appstore/version_determinator'
 SCHEDULER.every '1d', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
   project_manager.obtain_all_projects.each do |project|
+    next unless project.appstore_id != nil
     service = AppStore::ReviewService.new
     service.fetch_reviews_for_app_id(project.appstore_id)
 
@@ -22,8 +23,8 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
 
     widget_name = "appstore_rate_#{project.appstore_id}"
     send_event(widget_name, {
-                                  'title' => rating.round(2).to_s,
-                                  'text' => "#{project.display_name}, v.#{latest_version}"
+                                  'title' => "#{project.display_name}, v.#{latest_version}",
+                                  'current' => "#{rating.round(2).to_s}\u{1F31F}"
                               }
     )
   end

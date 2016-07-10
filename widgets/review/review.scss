@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$background-color:  #ffffff;
+$background-color:  #ec663c;
 
 $review-title-color:       rgba(0, 0, 0, 1);
 $review-text-color:        rgba(0, 0, 0, 1);
@@ -41,7 +41,7 @@ $review-text-color:        rgba(0, 0, 0, 1);
   .star {
     width: 20%;
     float: left;
-    font-size: 30px;
+    font-size: 50px;
   }
 
   .yellow {
@@ -50,6 +50,6 @@ $review-text-color:        rgba(0, 0, 0, 1);
   }
 
   .gray {
-    color :rgba(163, 163, 163, 1);
+    color :rgba(230, 230, 230, 1);
   }
 }
