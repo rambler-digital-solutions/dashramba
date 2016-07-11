@@ -22,9 +22,10 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
     rating = rate_calculator.calculate_average_rate_for_version(reviews, latest_version)
 
     widget_name = "appstore_rate_#{project.appstore_id}"
+    
     send_event(widget_name, {
                                   'title' => "#{project.display_name}, v.#{latest_version}",
-                                  'current' => "#{rating.round(2).to_s}\u{1F31F}"
+                                  'current' => "#{rating.round(2).to_s}★"
                               }
     )
   end
