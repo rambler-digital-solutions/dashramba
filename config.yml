@@ -61,3 +61,7 @@ projects:
     display_name: LiveJournal
     jenkins_name: 'Sup.LiveJournal.iOS'
     google_code_review_cell_id: 'B4'
+
+  rambler_id_sdk:
+    display_name: 'Rambler.ID SDK'
+    jenkins_name: 'Rambler.ID.iOS'
