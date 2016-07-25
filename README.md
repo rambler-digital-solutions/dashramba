@@ -49,6 +49,7 @@ The usage is a bit complicated right now, we'll simplify it in the future stable
 1. Clone this repository
 2. Install `dashing` gem: `gem install dashing`
 3. Run `bundle install` in dashramba root directory.
+4. Run `easy_install jenkinsapi`
 
 ### License
 
