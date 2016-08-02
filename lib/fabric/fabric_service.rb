@@ -32,6 +32,7 @@ module Fabric
        end       
 
        if average_monthly_crashfree
+       if average_monthly_crashfree != 0 && last_day_crashfree != 0
          mapper = Fabric::FabricMapper.new
          model = mapper.map_response(average_monthly_crashfree, last_day_crashfree, fabric_project_id)
          model.save() if model != nil
