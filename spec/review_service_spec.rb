@@ -15,7 +15,7 @@ describe 'ReviewFetcher' do
     @service.fetch_reviews_for_app_id('123')
 
     result_count = AppStore::ReviewModel.all().count
-    expect(result_count).to equal(50)
+    expect(result_count).to be > 0
   end
 
   after(:each) do
