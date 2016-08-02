@@ -8,7 +8,8 @@ module Fabric
 
     property :id, Serial
     property :fabric_project_id, String
-    property :crashfree, Float
+    property :average_monthly_crashfree, Float
+    property :last_day_crashfree, Float
 
   end
 

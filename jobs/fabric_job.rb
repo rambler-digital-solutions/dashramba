@@ -4,6 +4,7 @@ require 'json'
 require_relative '../lib/infrastructure/project_manager'
 require_relative '../lib/infrastructure/project_model'
 require_relative '../lib/fabric/fabric_service'
+require_relative '../lib/fabric/fabric_model'
 
 SCHEDULER.every '2m', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
@@ -14,17 +15,20 @@ SCHEDULER.every '2m', :first_in => 0 do |job|
 
     service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
     model = service.obtain_crashfree_for_bundle_id(project.fabric_project_id)
-    crashfree = model.crashfree if model != nil
+    if model != nil
+      crashfree = model.average_monthly_crashfree
 
-    crashfree_percentage = "#{(crashfree * 100).round(1).to_s}%"
-    project_hash = {
-        :label => project.display_name,
-        :value => crashfree_percentage
-    }
-    crashfree_array = crashfree_array.push(project_hash)
+      crashfree_percentage = "#{(crashfree * 100).round(1).to_s}%"
+      project_hash = {
+          :label => project.display_name,
+          :value => crashfree_percentage
+      }
+      crashfree_array = crashfree_array.push(project_hash)
 
-    widget_name = "fabric_#{project.appstore_id}"
-    send_event(widget_name, { current: crashfree_percentage })
+      widget_name = "fabric_#{project.appstore_id}"
+      send_event(widget_name, { current: crashfree_percentage })
+    end
+
   end
 
   leaderboard_widget_name = 'crashfree-leaderboard'

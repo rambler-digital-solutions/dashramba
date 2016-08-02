@@ -13,22 +13,27 @@ module Fabric
 
     def fetch_crashfree_for_bundle_id(fabric_project_id)
        time = Date.today.to_time
-       start_time = time.to_i - 60*60*24
+
+       # Obtaining crash-free for the last 31 days
+       start_time = time.to_i - 60*60*24*31
        end_time = time.to_i
+
        json = @provider.crash_free_users(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
 
-       crashfree = 0
+       average_monthly_crashfree = 0
+       last_day_crashfree = 0
        builds = json['builds']
        if builds
-         all_builds = builds['all']
-         crashfree = json['builds']['all'].last.last
+         all_builds = builds['all'].map do |array|
+           array.last
+         end
+         average_monthly_crashfree = all_builds.inject { |sum, element| sum + element }.to_f / all_builds.size
+         last_day_crashfree = all_builds.last
        end       
 
-       if crashfree
-         response = Hash.new
-         response["crashfree"] = crashfree
+       if average_monthly_crashfree
          mapper = Fabric::FabricMapper.new
-         model = mapper.map_response(response, fabric_project_id)
+         model = mapper.map_response(average_monthly_crashfree, last_day_crashfree, fabric_project_id)
          model.save() if model != nil
        end
 
