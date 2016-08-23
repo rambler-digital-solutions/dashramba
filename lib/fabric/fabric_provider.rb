@@ -56,6 +56,17 @@ module Fabric
       JSON.parse(response.body)
     end
 
+    def active_now_users(token, organization_id, project_id)
+      organization = 'organizations/' + organization_id
+      project = '/apps/' + project_id
+      endpoint = '/growth_analytics/active_now.json'
+      request_uri = API_VERSION_2 + organization + project + endpoint
+      request = Net::HTTP::Get.new(request_uri)
+      request['Authorization'] = 'Bearer ' + token
+      response = @http.request(request)
+      JSON.parse(response.body)
+    end
+
   end
 
 end

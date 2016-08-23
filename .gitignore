@@ -20,3 +20,6 @@
 history.yml
 Gemfile.lock
 fabric.yml
+.env
+credentials.ini
+config.yml

@@ -14,7 +14,7 @@ SCHEDULER.every '2m', :first_in => 0 do |job|
     next unless project.fabric_project_id != nil
 
     service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
-    model = service.obtain_crashfree_for_bundle_id(project.fabric_project_id)
+    model = service.obtain_fabric_model_for_bundle_id(project.fabric_project_id)
     if model != nil
       crashfree = model.average_monthly_crashfree
 
