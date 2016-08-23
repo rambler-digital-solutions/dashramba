@@ -10,6 +10,7 @@ module Fabric
     property :fabric_project_id, String
     property :average_monthly_crashfree, Float
     property :last_day_crashfree, Float
+    property :active_now, Integer
 
   end
 
