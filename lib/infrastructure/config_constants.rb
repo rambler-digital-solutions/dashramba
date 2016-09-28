@@ -5,4 +5,5 @@ module Infrastructure
   JENKINS_NAME_KEY = 'jenkins_name'
   FABRIC_PROJECT_ID_KEY = 'fabric_project_id'
   GOOGLE_CODE_REVIEW_CELL_ID = 'google_code_review_cell_id'
+  ENTERPRISE_BUNDLE_ID = 'enterprise_bundle_id'
 end
