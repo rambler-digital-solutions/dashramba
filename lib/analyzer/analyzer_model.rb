@@ -16,4 +16,7 @@ module Analyzer
     property :number_of_xcode_warnings, Integer
     property :top_issues, Object
   end
+
+  DataMapper.finalize
+  AnalyzerModel.auto_upgrade!
 end

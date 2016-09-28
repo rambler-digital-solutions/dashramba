@@ -21,7 +21,7 @@ module Analyzer
       }
 
       model_hash = {
-          :id => response['timestamp']
+          :id => response['timestamp'],
           :enterprise_bundle_id => bundle_id,
           :number_of_files => response['summary']['numberOfFiles'],
           :number_of_rotten_files => response['summary']['numberOfFilesWithViolations'],
@@ -31,8 +31,8 @@ module Analyzer
           :top_issues => top_issues
       }
 
-      result = Analyzer::AnalyzerModel.first(:id => model_hash[:id])
-      Analyzer::AnalyzerModel.new(model_hash) unless result != nil
+      result = AnalyzerModel.first(:id => model_hash[:id])
+      AnalyzerModel.new(model_hash) unless result != nil
     end
   end
 end
