@@ -15,8 +15,14 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
     if model != nil
       send_top_issues(model, project)
       send_priority_issues(model, project)
+      send_warnings(model, project)
     end
   end
+end
+
+def send_warnings(model, project)
+  widget_name = "warnings_#{project.jenkins_name}"
+  send_event(widget_name,  { current: model.number_of_xcode_warnings })
 end
 
 def send_priority_issues(model, project)
