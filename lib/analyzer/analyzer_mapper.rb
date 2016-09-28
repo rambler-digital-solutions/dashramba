@@ -26,6 +26,7 @@ module Analyzer
           :number_of_first_priority_issues => priority_violations[0]['number'],
           :number_of_second_priority_issues => priority_violations[1]['number'],
           :number_of_third_priority_issues => priority_violations[2]['number'],
+          :number_of_xcode_warnings => response['summary']['numberOfWarnings'],
           :top_issues => top_issues
       }
 
