@@ -11,8 +11,7 @@ module Analyzer
 
     def fetch_analysis_for_bundle_id(bundle_id)
       url = Pathname.new(@config['report_url'])
-                .join(bundle_id)
-                .join('json')
+                .join("#{bundle_id}.json")
       uri = URI(url.to_s)
 
       response = Net::HTTP.get(uri)

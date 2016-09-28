@@ -16,8 +16,6 @@ module Analyzer
 
       top_issues = top_issues_hash.sort{ |issue1, issue2|
         issue2[1] <=> issue1[1]
-      }.map { |key, value|
-        key
       }
 
       model_hash = {
