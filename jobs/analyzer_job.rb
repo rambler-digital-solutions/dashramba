@@ -63,5 +63,8 @@ def send_top_issues(model, project)
   }
 
   widget_name = "analyzer_top_#{project.jenkins_name}"
-  send_event(widget_name, { items: top_issues[0..9] })
+  send_event(widget_name, {
+                            items: top_issues[0..9],
+                            title: "#{project.display_name}: Top Issues"
+                        })
 end
