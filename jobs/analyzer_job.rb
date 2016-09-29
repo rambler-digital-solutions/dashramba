@@ -16,8 +16,14 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
       send_top_issues(model, project)
       send_priority_issues(model, project)
       send_warnings(model, project)
+      send_number_of_files(model, project)
     end
   end
+end
+
+def send_number_of_files(model, project)
+  widget_name = "file_number_#{project.jenkins_name}"
+  send_event(widget_name,  { current: model.number_of_files })
 end
 
 def send_warnings(model, project)
@@ -57,5 +63,5 @@ def send_top_issues(model, project)
   }
 
   widget_name = "analyzer_top_#{project.jenkins_name}"
-  send_event(widget_name, { items: top_issues })
+  send_event(widget_name, { items: top_issues[0..9] })
 end
