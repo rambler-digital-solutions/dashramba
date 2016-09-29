@@ -6,10 +6,7 @@ class Dashing.Chartjs extends Dashing.Widget
 
   pieChart: (id, datasets) ->
     data = datasets.map (d) => @merge(this.circleColor(d.colorName), label: d.label, value: d.value)
-    ctx = document.getElementById(id).getContext("2d")
-    ctx.canvas.width = 30;
-    ctx.canvas.height = 30;
-    new Chart(ctx).Pie(data, {
+    new Chart(document.getElementById(id).getContext("2d")).Pie(data, {
       responsive: true,
       maintainAspectRatio: true,
     })

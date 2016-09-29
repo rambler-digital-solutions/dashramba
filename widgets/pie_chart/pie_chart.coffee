@@ -1,21 +1,21 @@
 class Dashing.PieChart extends Dashing.Chartjs
 
     onData: (data) ->
-      @pieChart("PieChart",
+      chart = @pieChart("PieChart",
         [{
-          value: 13
+          value: data.priority1
           colorName: 'red'
-          label: data.test
+          label: 'Критичный' + ' - ' + data.priority1
         }, {
-          value: 32
-          colorName: 'green'
-          label: "Apple"
-        }, {
-          value: 40
+          value: data.priority2
           colorName: 'yellow'
-          label: "Pizza"
+          label: 'Средний' + ' - ' + data.priority2
         }, {
-          value: 20
-          colorName: 'gray'
-          label: "Rhubarb"
+          value: data.priority3
+          colorName: 'cyan'
+          label: 'Низкий' + ' - ' + data.priority3
         }])
+      widget = $(@node)
+      legend = chart.generateLegend()
+      widget.find('.chart-legend').html(legend)
+
