@@ -40,9 +40,13 @@ The usage is a bit complicated right now, we'll simplify it in the future stable
   fabric_client_secret: {fabric_client_secret_here}
   fabric_organization_id : {fabric_organization_id_here}
   ```
-  
-4. Replace the application data in `config.yml` with your applications.
-5. Run `dashing start`.  
+4. Add `analyzer.yml` file in the root directory:
+
+   ```yml
+   report_url: '{oclint_reports_url_here}'
+   ```
+5. Replace the application data in `config.yml` with your applications.
+6. Run `dashing start`.  
 
 ### Installation
 
