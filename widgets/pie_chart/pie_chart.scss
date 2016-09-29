@@ -1,0 +1,19 @@
+.widget-pie-chart {
+  $background-color:  #47bbb3;
+
+  background-color: $background-color;
+  max-width: 100%;
+
+  .pie-chart {
+    max-width: 100%;
+    height: auto !important;
+  }
+
+  .chart-legend li span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+  }
+}
+

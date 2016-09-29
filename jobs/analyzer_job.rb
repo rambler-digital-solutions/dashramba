@@ -6,6 +6,8 @@ require_relative '../lib/analyzer/analyzer_model'
 SCHEDULER.every '1d', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
 
+  widget_name = "analyzer_priority_Sup.LiveJournal.iOS"
+  send_event(widget_name,  { 'test' => 'Hey yo!' })
   service = Analyzer::AnalyzerService.new
   project_manager.obtain_all_projects.each do |project|
     next unless project.enterprise_bundle_id != nil
@@ -49,7 +51,11 @@ def send_priority_issues(model, project)
       }
   ]
 
-  send_event(widget_name,  { items: items })
+  send_event(widget_name,  {
+                            'priority1' => model.number_of_first_priority_issues,
+                            'priority2' => model.number_of_second_priority_issues,
+                            'priority3' => model.number_of_third_priority_issues
+                        })
 end
 
 def send_top_issues(model, project)
