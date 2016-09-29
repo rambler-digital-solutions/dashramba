@@ -7,7 +7,8 @@ module Infrastructure
                 :appstore_id,
                 :jenkins_name,
                 :fabric_project_id,
-                :google_code_review_cell_id
+                :google_code_review_cell_id,
+                :enterprise_bundle_id
 
     def initialize(name, hash)
       @project_name = name
@@ -16,6 +17,7 @@ module Infrastructure
       @jenkins_name = hash[JENKINS_NAME_KEY]
       @fabric_project_id = hash[FABRIC_PROJECT_ID_KEY]
       @google_code_review_cell_id = hash[GOOGLE_CODE_REVIEW_CELL_ID]
+      @enterprise_bundle_id = hash[ENTERPRISE_BUNDLE_ID]
     end
   end
 end
