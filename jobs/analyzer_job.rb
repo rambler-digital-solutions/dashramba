@@ -3,7 +3,7 @@ require_relative '../lib/infrastructure/project_model'
 require_relative '../lib/analyzer/analyzer_service'
 require_relative '../lib/analyzer/analyzer_model'
 
-SCHEDULER.every '1d', :first_in => 0 do |job|
+SCHEDULER.cron '0 8 * * *', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
 
   widget_name = "analyzer_priority_Sup.LiveJournal.iOS"
