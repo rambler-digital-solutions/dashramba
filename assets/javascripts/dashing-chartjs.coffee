@@ -42,10 +42,11 @@ class Dashing.Chartjs extends Dashing.Widget
     darkgray: "77, 83, 96"
     gray: "148, 159, 177"
     green: "70, 191, 189"
+    light_green: "250, 190, 140"
     lightgray: "220, 220, 220"
     magenta: "255, 0, 255"
-    red: "247, 70, 74"
-    yellow: "253, 180, 92"
+    red: "255, 0, 60"
+    yellow: "255, 138, 0"
 
   color: (colorName) ->
     fillColor: "rgba(#{ @colorCode()[colorName] }, 0.2)"

@@ -12,7 +12,7 @@ class Dashing.PieChart extends Dashing.Chartjs
           label: 'Средний' + ' - ' + data.priority2
         }, {
           value: data.priority3
-          colorName: 'cyan'
+          colorName: 'light_green'
           label: 'Низкий' + ' - ' + data.priority3
         }])
       widget = $(@node)
