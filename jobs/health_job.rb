@@ -26,6 +26,7 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
     end
   end
 
+  array = array.sort_by {|hash| hash[:value]}.reverse!
   send_event('health', { items: array })
 end
 
@@ -42,7 +43,7 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
   warnings = analyzer_model.number_of_xcode_warnings
   maximum_warnings = analyzer_service.obtain_maximum_warnings_count(bundle_id)
 
-  crashfree = fabric_model.average_monthly_crashfree
+  crashfree = fabric_model.average_monthly_crashfree * 100
   crashfree_coefficient = 0
   if crashfree > 90
     # В том случае, если crashfree > 90%, высчитываем его по линейной формуле (0,7x - 60)/10
@@ -67,12 +68,14 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
              points_level_3 * point_weight,
              points_level_4 * point_weight,
              points_level_5 * point_weight]
+  puts(weights)
   data = [crashfree_coefficient,
           count_coefficient(first_priority, maximum_first_priority),
           count_coefficient(second_priority, maximum_second_priority),
           count_coefficient(warnings, maximum_warnings),
           count_coefficient(third_priority, maximum_third_priority)]
-  count_health_with_data(data, weights)
+  puts(data)
+  count_health_with_data(data, weights).round(3)
 end
 
 def count_health_with_data(data, weights)
@@ -87,7 +90,7 @@ def count_coefficient(value, maximum_value)
   if maximum_value == 0
     coefficient = 1
   else
-    coefficient = value.to_f / maximum_value.to_f
+    coefficient = 1 - (value.to_f / maximum_value.to_f)
   end
   coefficient
 end
