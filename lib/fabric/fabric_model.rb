@@ -11,7 +11,7 @@ module Fabric
     property :average_monthly_crashfree, Float
     property :last_day_crashfree, Float
     property :active_now, Integer
-
+    property :date, Date
   end
 
   DataMapper.finalize

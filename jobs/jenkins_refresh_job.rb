@@ -13,7 +13,7 @@ SCHEDULER.every '1h', :first_in => 0 do
 
       separate_widget_name = "jenkins_#{project.jenkins_name}"
       number_of_tests = project_hash[:value]
-      send_event(separate_widget_name, { current: number_of_tests })
+      send_event(separate_widget_name, { current: number_of_tests})
     end
     correct_array = correct_array.sort_by {|hash| hash[:value]}.reverse!
     send_event('jenkins', { items: correct_array })

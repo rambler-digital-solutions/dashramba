@@ -16,12 +16,18 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
 
     service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
     service.fetch_active_now_for_bundle_id(project.fabric_project_id)
-    model = service.obtain_fabric_model_for_bundle_id(project.fabric_project_id)
+    model = service.obtain_current_fabric_model_for_bundle_id(project.fabric_project_id)
+    last_model = service.obtain_last_fabric_model_for_bundle_id(project.fabric_project_id)
     if model != nil
       crashfree = model.average_monthly_crashfree
       active_now = model.active_now
 
-      crashfree_percentage = "#{(crashfree * 100).round(1).to_s}%"
+      crashfree_value = (crashfree * 100).round(1)
+      if last_model
+        puts("last model")
+        last_crashfree_value = last_model.average_monthly_crashfree * 100
+      end
+      crashfree_percentage = "#{crashfree_value.to_s}%"
       crashfree_hash = {
           :label => project.display_name,
           :value => crashfree_percentage
@@ -36,7 +42,12 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
       active_now_array = active_now_array.push(active_now_hash)
 
       widget_name = "fabric_#{project.appstore_id}"
-      send_event(widget_name, { current: crashfree_percentage })
+      if last_model
+        send_event(widget_name, { current: crashfree_value, last: last_crashfree_value})
+      else
+        send_event(widget_name, { current: crashfree_value})
+      end
+
 
       widget_name = "active_now_#{project.appstore_id}"
       send_event(widget_name, { current: active_now })

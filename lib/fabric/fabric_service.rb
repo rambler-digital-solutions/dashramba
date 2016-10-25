@@ -36,14 +36,20 @@ module Fabric
 
        if average_monthly_crashfree != 0 && last_day_crashfree != 0
          mapper = Fabric::FabricMapper.new
-         model = mapper.map_response(average_monthly_crashfree, last_day_crashfree, fabric_project_id)
+         model = mapper.map_response(average_monthly_crashfree, last_day_crashfree, fabric_project_id, time)
          model.save() if model != nil
        end
 
     end
 
-    def obtain_fabric_model_for_bundle_id(fabric_project_id)
+    def obtain_current_fabric_model_for_bundle_id(fabric_project_id)
        Fabric::FabricModel.first(:fabric_project_id => fabric_project_id)
+    end
+
+    def obtain_last_fabric_model_for_bundle_id(fabric_project_id)
+      time = Date.today.to_time
+      last_day = time.yesterday.day
+      Fabric::FabricModel.first(:fabric_project_id => fabric_project_id, :date.day => last_day)
     end
 
     def fetch_active_now_for_bundle_id(fabric_project_id)
@@ -52,7 +58,7 @@ module Fabric
       model = Fabric::FabricModel.first(:fabric_project_id => fabric_project_id)
       if model != nil
         model.active_now = active_now
-        model.save()
+        model.save
       end
 
       active_now
