@@ -34,7 +34,7 @@ module Analyzer
       if result != nil
         result.update(model_hash)
       else
-        result = Fabric::FabricModel.new(model_hash)
+        result = Analyzer::AnalyzerModel.new(model_hash)
       end
       return result
     end
