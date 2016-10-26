@@ -1,0 +1,25 @@
+.widget-doom {
+  $background-color:  #47bbb3;
+  $title-color:       rgba(255, 255, 255, 1);
+
+  background-color: $background-color;
+  max-width: 100%;
+
+  .title {
+    color: $title-color;
+    margin-bottom: 20px;
+  }
+
+  .rating {
+    color: $title-color;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  .face {
+    width: 150px;
+    height: auto !important;
+  }
+
+}
+
