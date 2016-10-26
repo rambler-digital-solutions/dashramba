@@ -6,8 +6,6 @@ require_relative '../lib/analyzer/analyzer_model'
 # SCHEDULER.cron '0 8 * * *' do |job|
 SCHEDULER.every '15m', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
-
-  widget_name = "analyzer_priority_Sup.LiveJournal.iOS"
   service = Analyzer::AnalyzerService.new
   project_manager.obtain_all_projects.each do |project|
     next unless project.enterprise_bundle_id != nil

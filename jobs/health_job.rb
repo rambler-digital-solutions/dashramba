@@ -69,13 +69,11 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
              points_level_3 * point_weight,
              points_level_4 * point_weight,
              points_level_5 * point_weight]
-  puts(weights)
   data = [crashfree_coefficient,
           count_coefficient(first_priority, maximum_first_priority),
           count_coefficient(second_priority, maximum_second_priority),
           count_coefficient(warnings, maximum_warnings),
           count_coefficient(third_priority, maximum_third_priority)]
-  puts(data)
   count_health_with_data(data, weights).round(3)
 end
 
