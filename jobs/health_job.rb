@@ -19,10 +19,11 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
 
     if analyzer_model != nil && fabric_model != nil
       health = count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, project.enterprise_bundle_id)
-      puts(project.display_name)
-      puts(health)
       project_hash = {:label => project.display_name, :value => health}
       array.push(project_hash)
+
+      widget_name = "health_#{project.project_id}"
+      send_event(widget_name,  { 'rating' => health.round(1) })
     end
   end
 

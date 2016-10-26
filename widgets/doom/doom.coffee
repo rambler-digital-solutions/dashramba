@@ -18,4 +18,5 @@ class Dashing.Doom extends Dashing.Widget
       else if data.rating < 2 && data.rating >= 0
         face.attr({src: "/assets/0-2.png"})
 
-      widget.find('.rating').html("43%")
+      health = data.rating * 10
+      widget.find('.rating').html(health + "%")
