@@ -3,11 +3,9 @@ require_relative '../lib/infrastructure/project_model'
 require_relative '../lib/analyzer/analyzer_service'
 require_relative '../lib/analyzer/analyzer_model'
 
-SCHEDULER.cron '0 8 * * *' do |job|
+# SCHEDULER.cron '0 8 * * *' do |job|
+SCHEDULER.every '15m', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
-
-  widget_name = "analyzer_priority_Sup.LiveJournal.iOS"
-  send_event(widget_name,  { 'test' => 'Hey yo!' })
   service = Analyzer::AnalyzerService.new
   project_manager.obtain_all_projects.each do |project|
     next unless project.enterprise_bundle_id != nil
@@ -35,22 +33,6 @@ end
 
 def send_priority_issues(model, project)
   widget_name = "analyzer_priority_#{project.jenkins_name}"
-
-  items = [
-      {
-          :label => 'Критичный',
-          :value => model.number_of_first_priority_issues
-      },
-      {
-          :label => 'Средний',
-          :value => model.number_of_second_priority_issues
-      },
-      {
-          :label => 'Низкий',
-          :value => model.number_of_third_priority_issues
-      }
-  ]
-
   send_event(widget_name,  {
                             'priority1' => model.number_of_first_priority_issues,
                             'priority2' => model.number_of_second_priority_issues,

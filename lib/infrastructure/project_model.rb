@@ -2,7 +2,8 @@ require_relative 'config_constants'
 
 module Infrastructure
   class ProjectModel
-    attr_reader :project_name,
+    attr_reader :project_id,
+                :project_name,
                 :display_name,
                 :appstore_id,
                 :jenkins_name,
@@ -12,6 +13,7 @@ module Infrastructure
 
     def initialize(name, hash)
       @project_name = name
+      @project_id = hash[PROJECT_ID_KEY]
       @display_name = hash[DISPLAY_NAME_KEY]
       @appstore_id = hash[APPSTORE_ID_KEY]
       @jenkins_name = hash[JENKINS_NAME_KEY]

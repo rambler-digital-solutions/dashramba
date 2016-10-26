@@ -24,7 +24,23 @@ module Analyzer
     end
 
     def obtain_analysis_model_for_bundle_id(bundle_id)
-      Analyzer::AnalyzerModel.first(:enterprise_bundle_id => bundle_id)
+      Analyzer::AnalyzerModel.last(:enterprise_bundle_id => bundle_id)
+    end
+
+    def obtain_maximum_first_priority_issue_count(bundle_id)
+      Analyzer::AnalyzerModel.max(:number_of_first_priority_issues)
+    end
+
+    def obtain_maximum_second_priority_issue_count(bundle_id)
+      Analyzer::AnalyzerModel.max(:number_of_second_priority_issues)
+    end
+
+    def obtain_maximum_third_priority_issue_count(bundle_id)
+      Analyzer::AnalyzerModel.max(:number_of_third_priority_issues)
+    end
+
+    def obtain_maximum_warnings_count(bundle_id)
+      Analyzer::AnalyzerModel.max(:number_of_xcode_warnings)
     end
   end
 

@@ -31,7 +31,12 @@ module Analyzer
       }
 
       result = AnalyzerModel.first(:id => model_hash[:id])
-      AnalyzerModel.new(model_hash) unless result != nil
+      if result != nil
+        result.update(model_hash)
+      else
+        result = Analyzer::AnalyzerModel.new(model_hash)
+      end
+      return result
     end
   end
 end
