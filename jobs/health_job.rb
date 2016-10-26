@@ -19,7 +19,7 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
 
     if analyzer_model != nil && fabric_model != nil
       health = count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, project.enterprise_bundle_id)
-      project_hash = {:label => project.display_name, :value => health}
+      project_hash = {:label => project.display_name, :value => "#{health}/10"}
       array.push(project_hash)
 
       widget_name = "health_#{project.project_id}"
@@ -74,7 +74,7 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
           count_coefficient(second_priority, maximum_second_priority),
           count_coefficient(warnings, maximum_warnings),
           count_coefficient(third_priority, maximum_third_priority)]
-  count_health_with_data(data, weights).round(3)
+  count_health_with_data(data, weights).round(2)
 end
 
 def count_health_with_data(data, weights)
