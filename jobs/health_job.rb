@@ -49,7 +49,7 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
   if crashfree > 98
     # В том случае, если crashfree > 98%, высчитываем его по линейной формуле (0,7x - 68,6)/2 + 0,3
     # Т.е. полученный коэффициент находится в промежутке [0,3;1,0]
-    crashfree_coefficient = (0.7 * crashfree - 60) / 10
+    crashfree_coefficient = (0.7 * crashfree - 68.6)/2 + 0.3
   else
     # Коэффициент находится в промежутке [0,3;1,0]
     crashfree_coefficient = crashfree * 0.003 / 0.9
