@@ -23,12 +23,22 @@ module Fabric
        end_time = time.to_i
        monthly_crashfree = crashfree_for_range(month_start_time, end_time, fabric_project_id)
        day_crashfree = crashfree_for_range(day_start_time, end_time, fabric_project_id)
-
        if monthly_crashfree != 0
          mapper = Fabric::FabricMapper.new
-         model = mapper.map_response(monthly_crashfree, day_crashfree, fabric_project_id)
+         model = mapper.map_crashfree_response(monthly_crashfree, day_crashfree, fabric_project_id)
          model.save() if model != nil
        end
+
+    end
+
+    def fetch_oomfree_for_bundle_id(fabric_project_id)
+      monthly_oomfree = @provider.oom_free(@token, 31, fabric_project_id)
+      daily_oomfree = @provider.oom_free(@token, 1, fabric_project_id)
+      if monthly_oomfree != 0 && daily_oomfree != 0
+        mapper = Fabric::FabricMapper.new
+        model = mapper.map_oom_response(monthly_oomfree, daily_oomfree, fabric_project_id)
+        model.save() if model != nil
+      end
 
     end
 

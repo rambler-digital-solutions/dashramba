@@ -105,6 +105,30 @@ module Fabric
       parsed_response['data']['project']['crashlytics']['scalars']['crashes']
     end
 
+    def oom_free(token, days, project_id)
+      uri = URI.parse(FABRIC_GRAPHQL_URL)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Post.new(uri)
+      request.content_type = 'application/json'
+      request.add_field('Authorization', 'Bearer ' + token)
+      request.body = {
+          'query' => "query oomCountForDaysForBuild($projectId: String!, $builds: [String!]!, $days: Int!) { project(externalId: $projectId) { crashlytics{ oomCounts(builds: $builds, days: $days){ timeSeries{ allTimeCount } } oomSessionCounts(builds: $builds, days: $days){ timeSeries{ allTimeCount } } } } }",
+          'variables' => {'projectId' => project_id,
+                          'days' => days,
+                          'builds' => [
+                              'all'
+                          ]
+          }
+      }.to_json
+      response = http.request(request)
+      parsed_response = JSON.parse(response.body)
+      oom_count = parsed_response['data']['project']['crashlytics']['oomCounts']['timeSeries'][0]['allTimeCount']
+      oom_session_count = parsed_response['data']['project']['crashlytics']['oomSessionCounts']['timeSeries'][0]['allTimeCount']
+      1 - oom_count.to_f/oom_session_count.to_f
+    end
+
   end
 
 end
