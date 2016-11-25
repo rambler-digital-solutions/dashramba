@@ -23,6 +23,7 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
       active_now = model.active_now
 
       crashfree_percentage = "#{(crashfree * 100).round(1).to_s}%"
+      crashfree_percentage = "#{(crashfree * 100).round(2).to_s}%"
       crashfree_hash = {
           :label => project.display_name,
           :value => crashfree_percentage
