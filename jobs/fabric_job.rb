@@ -6,16 +6,17 @@ require_relative '../lib/infrastructure/project_model'
 require_relative '../lib/fabric/fabric_service'
 require_relative '../lib/fabric/fabric_model'
 
+service = Fabric::FabricService.new
+
 SCHEDULER.every '30s', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
-  service = Fabric::FabricService.new
   crashfree_array = Array.new
   active_now_array = Array.new
   project_manager.obtain_all_projects.each do |project|
     next unless project.fabric_project_id != nil
 
-    service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
-    service.fetch_active_now_for_bundle_id(project.fabric_project_id)
+    @service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
+    @service.fetch_active_now_for_bundle_id(project.fabric_project_id)
     model = service.obtain_fabric_model_for_bundle_id(project.fabric_project_id)
     if model != nil
       crashfree = model.average_monthly_crashfree

@@ -6,6 +6,7 @@ module Fabric
   class FabricService
 
     def initialize
+      puts("init motherfucka")
       @provider = Fabric::FabricProvider.new()
       @config = YAML::load_file('fabric.yml')
       @token = @provider.authorize(@config['fabric_email'],
@@ -21,22 +22,12 @@ module Fabric
        start_time = time.to_i - 60*60*24*31
        end_time = time.to_i
 
-       json = @provider.crash_free_users(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
-
-       average_monthly_crashfree = 0
-       last_day_crashfree = 0
-       builds = json['builds']
-       if builds
-         all_builds = builds['all'].map do |array|
-           array.last
-         end
-         average_monthly_crashfree = all_builds.inject { |sum, element| sum + element }.to_f / all_builds.size
-         last_day_crashfree = all_builds.last
-       end       
-
-       if average_monthly_crashfree != 0 && last_day_crashfree != 0
+       sessions_count = @provider.sessions_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
+       crashes_count = @provider.crashes_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
+       monthly_crashfree = 1 - crashes_count.to_f/sessions_count.to_f
+       if monthly_crashfree != 0
          mapper = Fabric::FabricMapper.new
-         model = mapper.map_response(average_monthly_crashfree, last_day_crashfree, fabric_project_id)
+         model = mapper.map_response(monthly_crashfree, 0, fabric_project_id)
          model.save() if model != nil
        end
 
