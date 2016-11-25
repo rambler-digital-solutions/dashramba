@@ -6,7 +6,6 @@ module Fabric
   class FabricService
 
     def initialize
-      puts("init motherfucka")
       @provider = Fabric::FabricProvider.new()
       @config = YAML::load_file('fabric.yml')
       @token = @provider.authorize(@config['fabric_email'],
@@ -19,15 +18,15 @@ module Fabric
        time = Date.today.to_time
 
        # Obtaining crash-free for the last 31 days
-       start_time = time.to_i - 60*60*24*31
+       month_start_time = time.to_i - 60*60*24*31
+       day_start_time = time.to_i - 60*60*24
        end_time = time.to_i
+       monthly_crashfree = crashfree_for_range(month_start_time, end_time, fabric_project_id)
+       day_crashfree = crashfree_for_range(day_start_time, end_time, fabric_project_id)
 
-       sessions_count = @provider.sessions_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
-       crashes_count = @provider.crashes_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
-       monthly_crashfree = 1 - crashes_count.to_f/sessions_count.to_f
        if monthly_crashfree != 0
          mapper = Fabric::FabricMapper.new
-         model = mapper.map_response(monthly_crashfree, 0, fabric_project_id)
+         model = mapper.map_response(monthly_crashfree, day_crashfree, fabric_project_id)
          model.save() if model != nil
        end
 
@@ -48,7 +47,15 @@ module Fabric
 
       active_now
     end
-    
+
+    private
+
+    def crashfree_for_range(start_time, end_time, fabric_project_id)
+      sessions_count = @provider.sessions_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
+      crashes_count = @provider.crashes_count(@token,start_time,end_time,@config['fabric_organization_id'], fabric_project_id)
+      1 - crashes_count.to_f/sessions_count.to_f
+    end
+
   end
 
 end
