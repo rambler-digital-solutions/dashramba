@@ -56,22 +56,36 @@ def count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, 
     crashfree_coefficient = crashfree * 0.003 / 0.9
   end
 
+  oomfree = fabric_model.average_monthly_oomfree * 100
+  oomfree_coefficient = 0
+  if oomfree > 96
+    # В том случае, если oomfree > 96%, высчитываем его по линейной формуле (0,7x - 67,2)/4 + 0,3
+    # Т.е. полученный коэффициент находится в промежутке [0,3;1,0]
+    oomfree_coefficient = (0.7 * oomfree - 67.2)/4 + 0.3
+  else
+    # Коэффициент находится в промежутке [0,3;1,0]
+    oomfree_coefficient = oomfree * 0.3 / 96
+  end
+
   overall_weight = 10
-  overall_points = 16
-  points_level_1 = 6
-  points_level_2 = 4
-  points_level_3 = 3
-  points_level_4 = 2
-  points_level_5 = 1
+  overall_points = 25
+  points_level_1 = 7
+  points_level_2 = 6
+  points_level_3 = 5
+  points_level_4 = 4
+  points_level_5 = 2
+  points_level_6 = 1
 
   point_weight = overall_weight.to_f / overall_points.to_f
   weights = [points_level_1 * point_weight,
              points_level_2 * point_weight,
              points_level_3 * point_weight,
              points_level_4 * point_weight,
-             points_level_5 * point_weight]
+             points_level_5 * point_weight,
+             points_level_6 * point_weight]
   data = [crashfree_coefficient,
           count_coefficient(first_priority, maximum_first_priority),
+          oomfree_coefficient,
           count_coefficient(second_priority, maximum_second_priority),
           count_coefficient(warnings, maximum_warnings),
           count_coefficient(third_priority, maximum_third_priority)]
