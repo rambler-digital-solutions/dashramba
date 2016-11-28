@@ -8,7 +8,7 @@ require_relative '../lib/fabric/fabric_model'
 
 @service = Fabric::FabricService.new
 
-SCHEDULER.every '30s', :first_in => 0 do |job|
+SCHEDULER.every '2m', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
   crashfree_array = Array.new
   oomfree_array = Array.new
