@@ -15,7 +15,7 @@ module AppStore
       response = Net::HTTP.get(uri)
       hash = JSON.parse(response)
       entries = hash['feed']['entry']
-
+      return unless entries
       mapper = AppStore::ReviewMapper.new
       entries = entries.drop(1)
       entries.each do |hash|
