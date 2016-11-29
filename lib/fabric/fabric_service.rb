@@ -17,8 +17,8 @@ module Fabric
     def fetch_crashfree_for_bundle_id(fabric_project_id)
        time = Date.today.to_time
 
-       # Obtaining crash-free for the last 31 days
-       month_start_time = time.to_i - 60*60*24*31
+       # Obtaining crash-free for the last 30 days
+       month_start_time = time.to_i - 60*60*24*30
        day_start_time = time.to_i - 60*60*24
        end_time = time.to_i
        monthly_crashfree = crashfree_for_range(month_start_time, end_time, fabric_project_id)
@@ -32,7 +32,7 @@ module Fabric
     end
 
     def fetch_oomfree_for_bundle_id(fabric_project_id)
-      monthly_oomfree = @provider.oom_free(@token, 31, fabric_project_id)
+      monthly_oomfree = @provider.oom_free(@token, 30, fabric_project_id)
       daily_oomfree = @provider.oom_free(@token, 1, fabric_project_id)
       if monthly_oomfree != 0 && daily_oomfree != 0
         mapper = Fabric::FabricMapper.new
