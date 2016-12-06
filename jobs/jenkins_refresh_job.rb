@@ -17,5 +17,6 @@ SCHEDULER.every '1h', :first_in => 0 do
       send_event(separate_widget_name, { current: tests_count })
     end
     projects_array = projects_array.sort_by {|hash| hash[:value]}.reverse!
+    puts("Jenkins data: #{projects_array}")
     send_event('jenkins', { items: projects_array })
 end
