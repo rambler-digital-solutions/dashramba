@@ -8,6 +8,7 @@ gem 'data_mapper'
 gem 'sinatra_cyclist'
 gem 'google-api-client', '<0.9'
 gem 'google_drive'
+gem 'jenkins_api_client'
 
 # ActiveSupport dependency is not used by dashramba; instead google-api-client
 # 0.8.6 requires it. We lock it to 4.2.7 so as to avoid using 5.0, which is
