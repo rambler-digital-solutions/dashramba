@@ -13,9 +13,10 @@ SCHEDULER.every '2m', :first_in => 0 do |job|
   crashfree_array = Array.new
   oomfree_array = Array.new
   active_now_array = Array.new
-  project_manager.obtain_all_projects.each do |project|
-    next unless project.fabric_project_id != nil
-
+  projects = project_manager.obtain_all_projects.select { |project|
+    project.fabric_project_id != nil
+  }
+  projects.each do |project|
     @service.fetch_crashfree_for_bundle_id(project.fabric_project_id)
     @service.fetch_oomfree_for_bundle_id(project.fabric_project_id)
     @service.fetch_active_now_for_bundle_id(project.fabric_project_id)

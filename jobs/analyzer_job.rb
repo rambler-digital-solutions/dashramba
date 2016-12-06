@@ -7,9 +7,10 @@ require_relative '../lib/analyzer/analyzer_model'
 SCHEDULER.every '15m', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
   service = Analyzer::AnalyzerService.new
-  project_manager.obtain_all_projects.each do |project|
-    next unless project.enterprise_bundle_id != nil
-
+  projects = project_manager.obtain_all_projects.select { |project|
+    project.enterprise_bundle_id != nil
+  }
+  projects.each do |project|
     service.fetch_analysis_for_bundle_id(project.enterprise_bundle_id)
     model = service.obtain_analysis_model_for_bundle_id(project.enterprise_bundle_id)
     if model != nil

@@ -12,9 +12,12 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
 
   analyzer_service = Analyzer::AnalyzerService.new
   array = []
-  project_manager.obtain_all_projects.each do |project|
-    next unless project.enterprise_bundle_id != nil
 
+  projects = project_manager.obtain_all_projects.select { |project|
+    project.enterprise_bundle_id != nil
+  }
+
+  projects.each do |project|
     analyzer_model = analyzer_service.obtain_analysis_model_for_bundle_id(project.enterprise_bundle_id)
     fabric_model = @fabric_service.obtain_fabric_model_for_bundle_id(project.fabric_project_id)
 

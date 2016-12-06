@@ -7,8 +7,10 @@ LATEST_REVIEW_COUNT = 50
 
 SCHEDULER.every '15s', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
-  project_manager.obtain_all_projects.each do |project|
-    next unless project.appstore_id != nil
+  projects = project_manager.obtain_all_projects.select { |project|
+    project.appstore_id != nil
+  }
+  projects.each do |project|
     service = AppStore::ReviewService.new
     reviews = service.obtain_reviews_for_app_id(project.appstore_id)
 

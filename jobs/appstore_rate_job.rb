@@ -9,8 +9,10 @@ require_relative '../lib/appstore/version_determinator'
 
 SCHEDULER.every '1d', :first_in => 0 do |job|
   project_manager = Infrastructure::ProjectManager.new
-  project_manager.obtain_all_projects.each do |project|
-    next unless project.appstore_id != nil
+  projects = project_manager.obtain_all_projects.select { |project|
+    project.appstore_id != nil
+  }
+  projects.each do |project|
     service = AppStore::ReviewService.new
     service.fetch_reviews_for_app_id(project.appstore_id)
 
