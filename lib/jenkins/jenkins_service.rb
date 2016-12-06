@@ -17,6 +17,7 @@ module Jenkins
       build_number = get_last_successful_build(project_name)
       tests_count = @client.job.get_test_results(project_name, build_number)['passCount']
       model = @mapper.map_tests_data(project_name, tests_count, build_number)
+      model.save() if model != nil
       model.number_of_tests
     end
 
