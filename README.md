@@ -15,20 +15,23 @@ Project information dashboard with a number of integrations used in iOS developm
 - Jenkins
   - Number of unit tests
 - Fabric
-  - Overall crashfree percentage
+  - Crashfree percentage for all builds for the last 30 days
+  - OOM-free percentage for all builds for the last 30 days
+- OCLint
+  - OCLint issues
+  - Xcode warnings
 
 ### Usage
 
 The usage is a bit complicated right now, we'll simplify it in the future stable versions:
 
 1. Clone this repository
-2. Add `credentials.ini` file in the directory `/lib/jenkins`:
+2. Add `.env` file in the root directory:
 
   ```yml
-  [JenkinsCredentials]
-  JenkinsServer: {jenkins_url_here}
-  Login: {jenkins_login_here}
-  Password: {jenkins_user_password_here}
+  JENKINS_URL={jenkins_url_here}
+  JENKINS_USERNAME={jenkins_username_here}
+  JENKINS_PASSWORD={jenkins_password_here}
   ```
   
 3. Add `fabric.yml` file in the root directory:
@@ -53,7 +56,6 @@ The usage is a bit complicated right now, we'll simplify it in the future stable
 1. Clone this repository
 2. Install `dashing` gem: `gem install dashing`
 3. Run `bundle install` in dashramba root directory.
-4. Run `easy_install jenkinsapi`
 
 ### License
 
