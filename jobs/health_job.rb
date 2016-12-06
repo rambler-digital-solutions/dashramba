@@ -25,12 +25,12 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
       health = count_health_with_crashfree(analyzer_service, analyzer_model, fabric_model, project.enterprise_bundle_id)
       project_hash = {:label => project.display_name, :value => "#{health}/10"}
       array.push(project_hash)
-
+      puts(project_hash)
       widget_name = "health_#{project.project_id}"
       send_event(widget_name,  { 'rating' => health.round(1) })
     end
   end
-
+  puts(array)
   array = array.sort_by {|hash| hash[:value]}.reverse!
   send_event('health', { items: array })
 end
