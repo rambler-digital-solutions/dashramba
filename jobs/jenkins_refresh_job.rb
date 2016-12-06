@@ -5,10 +5,12 @@ SCHEDULER.every '1h', :first_in => 0 do
     projects_array = []
     service = Jenkins::JenkinsService.new
     project_manager = Infrastructure::ProjectManager.new
-    project_manager.obtain_all_projects.each do |project|
-      name = project.jenkins_name
-      next until name != nil
 
+    jenkins_projects = project_manager.obtain_all_projects.select { |project|
+      project.jenkins_name != nil
+    }
+    jenkins_projects.each do |project|
+      name = project.jenkins_name
       tests_count = service.fetch_tests_count(name)
       project_hash = {:label => project.display_name, :value => tests_count}
       projects_array = projects_array.push(project_hash)
